@@ -28,9 +28,22 @@ public class HotelService {
         return hotelRepository.findById(id).orElse(null);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteHotel(int id){
         hotelRepository.deleteById(id);
         return "Hotel deleted";
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public String updateHotel(int id, Hotel hotel){
+        Hotel existingHotel = hotelRepository.findById(id).orElse(null);
+        if(existingHotel == null){
+            return "Hotel not found";
+        }
+        existingHotel.setName(hotel.getName());
+        existingHotel.setRooms(hotel.getRooms());
+        existingHotel.setLocation(hotel.getLocation());
+        hotelRepository.save(existingHotel);
+        return "Hotel updated";
     }
 }

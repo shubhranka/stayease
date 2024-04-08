@@ -24,4 +24,10 @@ public class Hotel {
 
     @NotNull(message = "Rooms are mandatory")
     private Integer rooms;
+
+    @NotBlank(message = "Location is mandatory")
+    private String location;
+
+    @NotBlank(message = "Descriptions are mandatory")
+    private String description;
 }
