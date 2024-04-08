@@ -2,6 +2,7 @@ package com.shubhranka.stayease.exceptionHandlers;
 
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -16,5 +17,10 @@ public class ConstraintsViolationHandler {
                 .map(constraintViolation -> "Key - " + constraintViolation.getPropertyPath() + " | " + constraintViolation.getMessage())
                 .toList();
         return ResponseEntity.badRequest().body(messages);
+    }
+
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    public ResponseEntity<String> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        return ResponseEntity.badRequest().body("Invalid JSON");
     }
 }

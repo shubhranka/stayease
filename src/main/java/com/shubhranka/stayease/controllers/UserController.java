@@ -1,5 +1,6 @@
 package com.shubhranka.stayease.controllers;
 
+import com.shubhranka.stayease.dto.LoginRequest;
 import com.shubhranka.stayease.entities.User;
 import com.shubhranka.stayease.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class UserController {
     }
 
 
-//    @GetMapping("/register")
-//    public String register() {
-//        return "Register";
-//    }
+    @PostMapping("/auth")
+    public String auth(@RequestBody LoginRequest user) {
+        return userService.loginUser(user);
+    }
 }
