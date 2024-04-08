@@ -1,7 +1,6 @@
 package com.shubhranka.stayease.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Booking {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @ManyToOne
     private User user;
+
+    @ManyToOne
     private Hotel hotel;
 
 }
