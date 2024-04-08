@@ -42,7 +42,8 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/register").permitAll()
                                 .requestMatchers("/auth").permitAll()
-                                .requestMatchers(HttpMethod.POST,"/hotels").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST,"/hotels").hasAnyRole("ADMIN","MANAGER")
+                                .requestMatchers(HttpMethod.DELETE,"/hotels/*").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())
