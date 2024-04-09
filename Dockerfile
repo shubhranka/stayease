@@ -15,6 +15,9 @@ ARG MYSQL_PASSWORD
 ARG MYSQL_URL
 ARG MYSQL_PORT
 
+# set volume
+VOLUME /tmp
+
 # copy the jar file to the container
 COPY --from=builder /app/target/*.jar app.jar
 
