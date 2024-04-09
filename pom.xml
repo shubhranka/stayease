@@ -105,7 +105,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>fully.qualified.MainClass</mainClass>
+							<mainClass>com.shubhranka.stayease.StayeaseApplication</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
